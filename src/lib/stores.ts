@@ -91,8 +91,8 @@ export const uniqueAreas = derived(technicians, ($technicians) => {
   $technicians.forEach((tech) => {
     if (tech.area) {
       tech.area.split(/[,;&\/]+/).forEach((a) => {
-        const trimmed = a.trim();
-        if (trimmed) areas.add(trimmed);
+        const normalized = normalizeArea(a);
+        if (normalized) areas.add(normalized);
       });
     }
   });
