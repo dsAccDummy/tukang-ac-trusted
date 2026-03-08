@@ -71,7 +71,7 @@
             Special Thanks to
             <Heart class="w-3.5 h-3.5 text-red-400 fill-red-400" />
             <a
-              href="https://www.instagram.com/pundingin"
+              href="https://x.com/pundingin"
               target="_blank"
               rel="noopener noreferrer"
               class="text-primary hover:text-primary/80 transition-colors font-medium"
