@@ -1,5 +1,5 @@
 import { writable, derived, get } from 'svelte/store';
-import { fetchTechnicians, type Technician } from './sheets';
+import { fetchTechnicians, normalizeArea, type Technician } from './sheets';
 
 // ---------- Core stores ----------
 export const technicians = writable<Technician[]>([]);
@@ -50,8 +50,8 @@ export const stats = derived(technicians, ($technicians) => {
   $technicians.forEach((tech) => {
     if (tech.area) {
       tech.area.split(/[,;&\/]+/).forEach((a) => {
-        const trimmed = a.trim();
-        if (trimmed) uniqueAreas.add(trimmed);
+        const normalized = normalizeArea(a);
+        if (normalized) uniqueAreas.add(normalized);
       });
     }
   });
