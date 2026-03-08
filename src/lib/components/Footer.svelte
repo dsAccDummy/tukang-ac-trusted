@@ -65,12 +65,17 @@
       <div class="mt-10 pt-8 border-t border-slate-800">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p class="text-sm text-slate-500">
-            &copy; 2025 Tukang AC Trusted. Semua data bersumber dari kontribusi komunitas.
+            &copy; 2026 Tukang AC Trusted. Semua data bersumber dari kontribusi komunitas.
           </p>
           <p class="text-sm text-slate-500 flex items-center gap-1.5">
-            Dibuat dengan
+            Special Thanks to
             <Heart class="w-3.5 h-3.5 text-red-400 fill-red-400" />
-            untuk komunitas Indonesia
+            <a
+              href="https://www.instagram.com/pundingin"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary hover:text-primary/80 transition-colors font-medium"
+            >@pundingin</a>
           </p>
         </div>
       </div>
