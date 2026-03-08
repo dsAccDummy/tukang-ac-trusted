@@ -37,8 +37,8 @@ export async function fetchTechnicians(): Promise<Technician[]> {
         complete: (results) => {
           const rows = results.data as string[][];
 
-          // Skip the header row (index 0)
-          const dataRows = rows.slice(1);
+          // Skip header rows (row 1 = header, row 2 = sub-header); data starts at row 3
+          const dataRows = rows.slice(2);
 
           const technicians: Technician[] = dataRows
             .map((row, index) => ({
@@ -68,14 +68,25 @@ export async function fetchTechnicians(): Promise<Technician[]> {
 }
 
 /**
- * Extract unique areas from technician data, sorted alphabetically.
+ * Normalize an area name: trim, collapse whitespace, and convert to Title Case.
+ * This ensures "bekasi", "Bekasi", "BEKASI" all become "Bekasi".
+ */
+export function normalizeArea(raw: string): string {
+  const trimmed = raw.trim().replace(/\s+/g, ' ');
+  if (!trimmed) return '';
+  return trimmed
+    .toLowerCase()
+    .replace(/(?:^|\s)\S/g, (match) => match.toUpperCase());
+}
+
+/**
+ * Extract unique areas from technician data, normalized and sorted alphabetically.
  */
 export function getUniqueAreas(technicians: Technician[]): string[] {
   const areas = new Set<string>();
   technicians.forEach((tech) => {
     if (tech.area) {
-      // Some entries may contain multiple areas separated by commas
-      const parts = tech.area.split(/[,;&\/]+/).map((a) => a.trim()).filter(Boolean);
+      const parts = tech.area.split(/[,;&\/]+/).map((a) => normalizeArea(a)).filter(Boolean);
       parts.forEach((part) => areas.add(part));
     }
   });
